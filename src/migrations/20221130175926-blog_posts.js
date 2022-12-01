@@ -17,6 +17,7 @@ module.exports = {
       },
       user_id: {
         type: Sequelize.INTEGER,
+        foreignKey: true
       },
       published: {
         type: Sequelize.DATE,
