@@ -4,14 +4,15 @@ const UserModel = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER, 
       primaryKey: true
     },
-    display_name: DataTypes.STRING,
+    displayName: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     image: DataTypes.STRING,
   },
   {
     tableName: 'users',
-    timestamps: false
+    timestamps: false,
+    underscored: true,
   });
   return User;
 };
