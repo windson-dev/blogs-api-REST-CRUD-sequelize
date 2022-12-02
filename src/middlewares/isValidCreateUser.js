@@ -1,4 +1,4 @@
-const { getByEmail } = require('../services/userService');
+const { findByEmail } = require('../services/userService');
 
 const isValidCreateUser = (req, res, next) => {
   const { displayName, email, password } = req.body;
@@ -22,7 +22,7 @@ const isValidCreateUser = (req, res, next) => {
 
 const isValidExistEmail = async (req, res, next) => {
   const { email } = req.body;
-  const result = await getByEmail(email);
+  const result = await findByEmail(email);
 
   if (result) {
     return res.status(409).send({ message: 'User already registered' });
