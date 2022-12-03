@@ -10,7 +10,7 @@ const categoriesModel = (sequelize, DataTypes) => {
   {
     timestamps: false,
     tableName: 'categories',
-    underScored: true,
+    underscored: true,
   }
   );
   return Category
