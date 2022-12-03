@@ -26,7 +26,7 @@ const BlogPostModel = (sequelize, DataTypes) => {
       { foreignKey: 'userId', as: 'users' });
   };
 
-  return BlogPost
+  return BlogPost;
 };
 
 module.exports = BlogPostModel;
