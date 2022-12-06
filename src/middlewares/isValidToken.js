@@ -1,18 +1,29 @@
-const { verifyToken } = require('../authenticator/jwtConfig');
+const jwt = require('jsonwebtoken');
+const { User } = require('../models');
+
+const secret = 'secretJWT';
 
 const isValidToken = async (req, res, next) => {
-  const { authorization } = req.headers;
+  try {
+    const { authorization } = req.headers;
 
-  const payload = verifyToken(authorization);
+    if (!authorization) {
+      return res.status(401).json({ message: 'Token not found' });
+    }
 
-  if (!authorization) {
-    return res.status(401).json({ message: 'Token not found' });
-  }
+    const decoded = jwt.verify(authorization, secret);
+    
+    const user = await User.findByPk(decoded.data.id);
 
-  if (payload.isError) {
+    if (!user) {
+      return res.status(401).json({ message: 'Expired or invalid token' });
+    }
+
+    req.user = user;
+    next();
+  } catch (err) {
     return res.status(401).json({ message: 'Expired or invalid token' });
   }
-  return next();
 };
 
 module.exports = {

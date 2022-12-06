@@ -32,7 +32,14 @@ const findById = async (id) => {
   return blogpost;
 };
 
+const updateBlogPost = (id, { title, content }) => {
+  const blogpost = BlogPost.update({ title, content }, { where: { id } });
+
+  return blogpost;
+};
+  
 module.exports = {
   findAll,
   findById,
+  updateBlogPost,
 };
