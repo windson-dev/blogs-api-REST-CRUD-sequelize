@@ -15,12 +15,8 @@ const isValidToken = async (req, res, next) => {
     
     const user = await User.findByPk(decoded.data.id);
 
-    if (!user) {
-      return res.status(401).json({ message: 'Expired or invalid token' });
-    }
-
     req.user = user;
-    next();
+    return next();
   } catch (err) {
     return res.status(401).json({ message: 'Expired or invalid token' });
   }

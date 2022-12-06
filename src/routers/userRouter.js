@@ -1,6 +1,7 @@
 const express = require('express');
 
 const userController = require('../controllers/userController');
+
 const { isValidCreateUser, isValidExistEmail } = require('../middlewares/isValidCreateUser');
 const { isValidToken } = require('../middlewares/isValidToken');
 const { isValidUserId } = require('../middlewares/isValidUserId');
